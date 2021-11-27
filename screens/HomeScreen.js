@@ -2,6 +2,8 @@ import React from "react";
 import { StyleSheet, Text, View, SafeAreaView, Image } from "react-native";
 import tw from "tailwind-react-native-classnames";
 import NavOptions from "../components/NavOptions";
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
+import { GOOGLE_MAPS_APIKEY } from "@env";
 const HomeScreen = () => {
   return (
     <SafeAreaView style={tw`bg-white h-full`}>
@@ -11,6 +13,13 @@ const HomeScreen = () => {
           source={{
             uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Uber_logo_2018.svg/2560px-Uber_logo_2018.svg.png",
           }}
+        />
+        <GooglePlacesAutocomplete
+          nearbyPlacesAPI="GooglePlacesSearch"
+          debounce={400}
+          placeholder="Search"
+          styles={{ container: { flex: 0 }, textInput: { fontSize: 18 } }}
+          query={{ key: GOOGLE_MAPS_APIKEY, language: "en" }}
         />
         <NavOptions />
       </View>
